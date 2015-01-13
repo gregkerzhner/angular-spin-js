@@ -15,7 +15,7 @@ First, include [spin.js](http://fgnass.github.io/spin.js/)
 Then:
 
 ```
-bower install angular-spinjs
+bower install angular-spin-js
 ```
 
 Then, include the relevant css and js files 
