@@ -20,8 +20,8 @@ bower install angular-spin-js
 
 Then, include the relevant css and js files 
 ```
- <script src="angular-spinjs/build/angular-spinner.js"></script>
- <link rel="stylesheet" href="angular-spinjs/build/angular-spinner.css" />
+ <script src="angular-spin-js/build/angular-spinner.js"></script>
+ <link rel="stylesheet" href="angular-spin-js/build/angular-spinner.css" />
 ```
 
 Finally, include the spinner module in your app
