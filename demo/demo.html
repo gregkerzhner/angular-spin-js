@@ -1,0 +1,46 @@
+    <!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="../development/styles/vendor-styles.css">
+    <link rel="stylesheet" href="../development/styles/app-styles.css">
+    
+  </head>
+<body ng-app='demo'> 
+    <div spinner spinner-name="demo" style="position: relative; float: left;">
+      <div id="one" style="background-color: red; height: 300px; width: 300px; position: relative;"></div>  
+    </div>
+
+    
+  <script src="http://localhost:9000/vendor-scripts.js"></script>
+  <script src="http://localhost:9000/templates.js"></script>
+  <script src="http://localhost:9000/app-scripts.js"></script>
+  <script type="text/javascript">
+    angular.module('demo', [  
+      'angular-spinner'
+    ])
+    .config(function(spinnerProvider){
+      spinnerProvider.setOptions({backgroundClass: 'blue'})
+    })
+    .controller('DemoController', function($scope, spinner){
+      $scope.startSpinner = function(){
+        spinner.start('demo');
+      }
+
+      $scope.stopSpinner = function(){
+        spinner.stop('demo')
+      }
+    })
+  </script>
+  
+  </body>
+</html>

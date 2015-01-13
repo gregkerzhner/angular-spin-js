@@ -1,0 +1,11 @@
+
+<!--<span ng-show="spinner.spinners[spinnerName]==true" style="position: relative;">
+  <div style=""> <span ng-class="anchorClass"></span> </div>
+</span>
+<span ng-show="spinner.spinners[spinnerName]==false || !spinner.spinners[spinnerName]">
+  <div ng-transclude ></div> 
+ <div ng-transclude ng-class="{'spinner-fade-background': overlay && spinner.spinners[spinnerName]==true}"></div>    
+-->
+<div ng-class="spinnerClass()">
+  <span ng-transclude></span>
+</div>

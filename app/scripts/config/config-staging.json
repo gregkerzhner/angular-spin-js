@@ -1,0 +1,6 @@
+{
+  "name": "angular-spinner.config",
+  "constants": { 
+    "ENV": {}
+  }
+}

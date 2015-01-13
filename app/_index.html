@@ -1,0 +1,52 @@
+    <!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% if (env ==="development") { %>
+    <link rel="stylesheet" href="/styles/vendor-styles.css">
+    <link rel="stylesheet" href="/styles/app-styles.css">
+    <% } else {%>
+    <link rel="stylesheet" href="/styles/<%= rand %>styles.css">
+    <% } %>
+  </head>
+<body ng-app='demo'>
+<!-- ===== yeoman hook ===== -->
+
+  <div ng-controller="DemoController">
+    <div spinner spinner-name="demo">
+      <div style="color: red; height: 300px; width: 300px;"></div>
+    </div>
+    <button ng-click="startSpinner()"></button>
+  </div>
+    <% if (env ==="development") { %>
+    <script src="/vendor-scripts.js"></script>
+    <script src="/templates.js"></script>
+    <script src="/app-scripts.js"></script>
+    <% } else { %>
+    <script src="<%= rand %>scripts.js"></script>
+    <% } %>
+
+    <script>
+
+     angular.module('demo', [  
+      'angular-spinner'
+    ])
+    .config(function(){
+
+    })
+    .controller('DemoController', function($scope, spinner){
+      $scope.startSpinner = function(){
+        spinner.start('demo')
+      }
+    })
+    </script>
+  </body>
+</html>
