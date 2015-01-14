@@ -21,11 +21,14 @@ module.run(["$templateCache", function($templateCache) {
 angular.module('angular-spinner', [  
   'angular-spinner.templates'
 ])
+
 .directive("spinner", function() {
   return {
     restrict: 'A',
     controller: 'SpinnerController',
-    scope: true,
+    scope: {
+      spinnerName: '='
+    },
     templateUrl: 'spinner.tpl.html',
     transclude: true
   }
@@ -65,6 +68,7 @@ angular.module('angular-spinner', [
 
 
     this.disableFormFields = function (container, isDisabled) {
+      if(!container) return;
       var tagNames = ["INPUT", "SELECT", "TEXTAREA"];
       for (var i = 0; i < tagNames.length; i++) {
         var elems = container.getElementsByTagName(tagNames[i]);
@@ -79,11 +83,8 @@ angular.module('angular-spinner', [
 })
 
 
-
 .controller('SpinnerController', function($scope, $element, spinner, $timeout, $attrs){
-  spinner.spinners[spinnerName] = false;
-
-  var spinnerName = $attrs.spinnerName;
+  spinner.spinners[$scope.spinnerName] = false;
 
   $scope.spinnerOptions = JSON.parse($attrs.spinnerOptions || null)  || spinner.options().spinnerConfig || {
     lines: 9, // The number of lines to draw
@@ -102,7 +103,6 @@ angular.module('angular-spinner', [
     zIndex: 2e9
   };
 
-  debugger
 
   $scope.backgroundClass = $attrs.backgroundClass || spinner.options().backgroundClass || 'opaque';
 
@@ -110,7 +110,7 @@ angular.module('angular-spinner', [
   $scope.spinner = spinner;
 
   $scope.spinnerClass = function(){
-    if($scope.spinner.spinners[spinnerName]){
+    if($scope.spinner.spinners[$scope.spinnerName]){
       return $scope.backgroundClass;
     }
   }
@@ -125,7 +125,7 @@ angular.module('angular-spinner', [
   }
 
   $scope.$watch(function(){
-    return $scope.spinner.spinners[spinnerName];
+    return $scope.spinner.spinners[$scope.spinnerName];
   }, function(newVal, oldVal){
     if(newVal !== oldVal){
       if(newVal ){
