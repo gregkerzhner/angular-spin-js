@@ -27,7 +27,7 @@ angular.module('angular-spinner', [
     restrict: 'A',
     controller: 'SpinnerController',
     scope: {
-      spinnerName: '='
+      spinnerName: '=?'
     },
     templateUrl: 'spinner.tpl.html',
     transclude: true
@@ -42,11 +42,14 @@ angular.module('angular-spinner', [
     options = o;
   }
 
-  this.$get = function($q){
+  this.$get = function($q, $timeout){
     this.spinners = {};
+    var _this = this;
 
     this.start = function(name){
-      this.spinners[name] = true;
+      $timeout(function(){
+        _this.spinners[name] = true;
+      })
     }
 
     this.stop = function(name){
@@ -84,7 +87,10 @@ angular.module('angular-spinner', [
 
 
 .controller('SpinnerController', function($scope, $element, spinner, $timeout, $attrs){
-  spinner.spinners[$scope.spinnerName] = false;
+  var spinnerName = $scope.spinnerName;
+  if(!spinnerName) spinnerName = $attrs.spinnerName;
+
+  spinner.spinners[spinnerName] = false;
 
   $scope.spinnerOptions = JSON.parse($attrs.spinnerOptions || null)  || spinner.options().spinnerConfig || {
     lines: 9, // The number of lines to draw
@@ -110,7 +116,7 @@ angular.module('angular-spinner', [
   $scope.spinner = spinner;
 
   $scope.spinnerClass = function(){
-    if($scope.spinner.spinners[$scope.spinnerName]){
+    if($scope.spinner.spinners[spinnerName]){
       return $scope.backgroundClass;
     }
   }
@@ -125,7 +131,7 @@ angular.module('angular-spinner', [
   }
 
   $scope.$watch(function(){
-    return $scope.spinner.spinners[$scope.spinnerName];
+    return $scope.spinner.spinners[spinnerName];
   }, function(newVal, oldVal){
     if(newVal !== oldVal){
       if(newVal ){
