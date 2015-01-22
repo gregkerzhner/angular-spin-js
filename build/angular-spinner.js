@@ -4,14 +4,6 @@ catch(err) { module = angular.module("angular-spinner.templates", []); }
 module.run(["$templateCache", function($templateCache) {
   "use strict";
   $templateCache.put("spinner.tpl.html",
-    "\n" +
-    "<!--<span ng-show=\"spinner.spinners[spinnerName]==true\" style=\"position: relative;\">\n" +
-    "  <div style=\"\"> <span ng-class=\"anchorClass\"></span> </div>\n" +
-    "</span>\n" +
-    "<span ng-show=\"spinner.spinners[spinnerName]==false || !spinner.spinners[spinnerName]\">\n" +
-    "  <div ng-transclude ></div> \n" +
-    " <div ng-transclude ng-class=\"{'spinner-fade-background': overlay && spinner.spinners[spinnerName]==true}\"></div>    \n" +
-    "-->\n" +
     "<div ng-class=\"spinnerClass()\">\n" +
     "  <span ng-transclude></span>\n" +
     "</div>");

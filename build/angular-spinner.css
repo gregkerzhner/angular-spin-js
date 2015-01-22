@@ -1,2 +1,6 @@
 .opaque {
   opacity: 0.1 !important; }
+
+.standalone {
+  position: relative;
+  padding-top: 40px; }
