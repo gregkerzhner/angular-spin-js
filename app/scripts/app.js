@@ -33,7 +33,9 @@ angular.module('angular-spinner', [
     }
 
     this.stop = function(name){
-      this.spinners[name] = false;
+      $timeout(function(){
+        _this.spinners[name] = false;
+      })
     }
 
     this.isSpinning = function(name){
