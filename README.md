@@ -88,7 +88,7 @@ spinner.start('demo');
 spinner.stop('demo');
 ```
 
-###Contributing
+### Contributing
 Run gulp
 ```
 gulp
@@ -99,6 +99,6 @@ Add some unit tests!
 gulp unit-test
 ```
 
-###Liscence
+### Liscence
 MIT
 
